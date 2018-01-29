@@ -6,7 +6,9 @@ install.packages("devtools")
 ```
 
 install eegva package
+```r
 devtools::install_github("dcmsstats/eegva")
+```
 
 signal that this is statistics production, not development
 production <- TRUE
