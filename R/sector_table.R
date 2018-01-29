@@ -1,3 +1,4 @@
+#' @export
 sector_table <- function(gva_by_sector,
                          indexed = FALSE) {
 

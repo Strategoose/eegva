@@ -1,3 +1,4 @@
+#' @export
 extract_charities <- function(path,
                               sheet = "Charities") {
 

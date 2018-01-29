@@ -1,3 +1,4 @@
+#' @export
 sum_gva_by_subsector <- function(combined_gva,
                               gva,
                               subsector) {

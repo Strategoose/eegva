@@ -4,6 +4,7 @@
 #then it is matched against the two digit (except 30.1) SICs in Working
 #File sheet. So is very simple we are doing no grouping.
 
+#' @export
 extract_gva <- function(path,
                         sheet = "CP Millions") {
 

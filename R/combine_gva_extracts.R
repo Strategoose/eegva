@@ -1,3 +1,5 @@
+#' @importFrom magrittr %>%
+#' @export
 combine_gva_extracts <- function(abs, gva, sic91) {
 
   check_class(abs, "abs")

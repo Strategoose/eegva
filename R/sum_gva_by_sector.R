@@ -1,3 +1,4 @@
+#' @export
 sum_gva_by_sector <- function(combined_gva,
                               gva,
                               tourism,

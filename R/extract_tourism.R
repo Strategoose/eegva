@@ -1,3 +1,4 @@
+#' @export
 extract_tourism <- function(path,
                             sheet = "Tourism") {
 
