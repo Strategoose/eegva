@@ -1,23 +1,3 @@
-#' @title year_sector_table()
-#'
-#' @description Generic method to convert tables into wide format
-#'
-#' @details Generic method to convert tables into wide format
-#'
-#' @param x Object of \code{class(x) == 'year_sector_data'}.
-#' @param html Should the output be an R \code{data.frame} (and \code{tbl} and
-#'   \code{tbl_df}) or as html using \code{xtable}.
-#' @param fmt Format for values in the table to be displayed as, following
-#'   \code{sprintf}.
-#' @param ... Passes arguments to \code{print.xtable} and \code{xtable}. Will
-#'   silently be dropped if \code{html = FALSE}.
-#'
-#' @seealso \code{\link{sprintf}}
-#'
-#' @return wide format table
-#'
-#' @export
-
 # Define as a method
 year_sector_table_index <- function(x, html = FALSE, fmt = '%.1f', ...) {
 

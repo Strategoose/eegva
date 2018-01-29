@@ -1,5 +1,3 @@
-#' Extract SIC sales data from excel file
-
 extract_sic91 <- function(path,
                           sheet = "SIC 91 Sales Data") {
 

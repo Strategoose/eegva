@@ -8,10 +8,13 @@
 # install.packages("openxlsx")
 # install.packages("dplyr")
 # install.packages("tidyr")
+# install.packages("magrittr")
+
 
 # devtools::use_package("openxlsx")
 # devtools::use_package("dplyr")
 # devtools::use_package("tidyr")
+# devtools::use_package("magrittr")
 
 # THERE IS SENSITIVE DATA IN INST
 #
