@@ -27,6 +27,8 @@
 #
 # set up for development or production =========================================
 
+# devtools::install_github("dcmsstats/eegva")
+
 production <- FALSE
 
 # this updates the package used in both the package and the control script
@@ -151,7 +153,7 @@ gva_by_sector <- sum_gva_by_sector(
 # names(sector_lookup) <- c("working_name", "output_name", "row_postition")
 # write.csv(sector_lookup, "data/sector_lookup.csv")
 sector_lookup <- 
-  read.csv(system.file("data", "sector_lookup.csv", package = "eegva"))
+  read.csv(system.file("extdata", "sector_lookup.csv", package = "eegva"))
 
 subsector_lookup_digital <- read.csv("data/digital_subsector_lookup.csv", stringsAsFactors = FALSE)
 subsector_lookup_creative <- read.csv("data/creative_subsector_lookup.csv", stringsAsFactors = FALSE)
@@ -192,9 +194,11 @@ sector_table_indexed <- sector_table(gva_by_sector, indexed = TRUE)
 
 # excel output -----------------------------------------------------------------
 
-excel_filename <- "DCMS_Sectors_Economic_Estimates_Template.xlsx"
+excel_filename <- 
+  system.file(
+    "DCMS_Sectors_Economic_Estimates_Template.xlsx", package = "eegva")
 
-wb <- openxlsx::loadWorkbook(file = paste0("inst/", excel_filename))
+wb <- openxlsx::loadWorkbook(file = excel_filename)
 
 # 3.1 - GVA (£m)
 openxlsx::writeData(wb, 2, x = sector_table, startCol = 1, startRow = 6)
@@ -202,7 +206,8 @@ openxlsx::writeData(wb, 2, x = sector_table, startCol = 1, startRow = 6)
 # 3.1a - GVA (2010=100)
 openxlsx::writeData(wb, 3, x = sector_table_indexed, startCol = 1, startRow = 6)
 
-openxlsx::saveWorkbook(wb, file.path("~", "DCMS_Sectors_Economic_Estimates.xlsx"), overwrite = TRUE)
+openxlsx::saveWorkbook(
+  wb, file.path("~", "DCMS_Sectors_Economic_Estimates.xlsx"), overwrite = TRUE)
 
 
 # create charts - work in progress
