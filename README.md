@@ -62,6 +62,16 @@ The below roughly outlines the steps the package takes to [produce output]. This
 1. Produce PDF using Rmd to avoid copy and pasting values, and provide an audit trail.
 1. Produce charts using R to save time creating them manually, and in order to use Rmd above.
 
+### Package Infrastructure and rules
+For accessability (not all users will be familiar with tibbles) all tibbles are converted to data.frames.
+
+#### testing
+Each of the exported functions in the package that produces an R object (e.g. no no functions outputting excel files) performs validation as the final step, and if sucessful adds the output name (name of the object the return is assigned to) to the class e.g. `gva <- extract_gva(path)`, gva should have class `c("data.frame", "gva")`.
+
+Each function subsequent which uses an R object (excluding lookups) as input also checks that the input objects have a class name as per above.
+
+A test is written for each function which
+
 ### Source Code
 
 #### R/
