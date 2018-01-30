@@ -1,5 +1,6 @@
 
 ## Producing output 
+Below is a quick guide to producing output with the package.
 
 [devtools](https://www.rstudio.com/products/rpackages/devtools/) is required to install packages from github
 ```r
@@ -11,12 +12,18 @@ install eegva package
 devtools::install_github("dcmsstats/eegva")
 ```
 
-signal whether the run is "development", "production", or "test".
+signal how to run the code.
+If you have access to the raw data:
 ```r
 run <- "production"
 ```
 
-specify the publication year
+If you don't have access to the raw data and would like to test the package using dummy data:
+```r
+run <- "dummy"
+```
+
+Specify the publication year (data year not release year). (This is used to choose which file path is used in a production run).
 ```r
 publication_year <- 2016
 ```
@@ -36,6 +43,7 @@ for other errors, perform these steps then try again
 run `update.packages()`
 
 ## How the package works
+This sections provides more detailed information on the package.
 
 ### Using the package
 There are two options for using the package. 
@@ -46,10 +54,28 @@ Cloning the package source code from the github repository will give you access 
 #### Installing
 The second, which [Producing output] uses, is to install the package in a similar way that you would usually install packages (e.g. using install.packages("dplyr")). This means you can use the functions in the package which are necessary to produce the outputs, but are not able to access all of the code, or update it.
 
+
 ### How the package functions
 
 #### Producing Output
+source-script.R calls each of the functions necessary to produce publication output. A number of global variables must be set to specify how this runs.
+
+After using `devtools::install_github("dcmsstats/eegva")` If you have access to the raw data:
+```r
+run <- "production"
+```
+
+If you don't have access to the raw data and would like to test the package using dummy data:
+```r
+run <- "dummy"
+```
+
+Specify the publication year (data year not release year). (This is used to choose which file path is used in a production run).
+```r
+publication_year <- 2016
+
 The below roughly outlines the steps the package takes to [produce output]. This is what control-script.R does, see [control-script] or open on your laptop using `system.file()` for more detail. Each step uses functions which are founder in /R in the source code.
+
 1. Uses openxlsx to read in raw data from excel file. The functions that do this are prefixed with `extract_`. Dummy data is included in the package which can be used in place of this extracted data, when the raw data is not available.
 1. `combine_gva_extracts()` combines the extracted data.
 1. `sum_gva_by_sector()` and `sum_gva_by_subsector()` aggreates the data by sector and subsector respectively.

@@ -1,5 +1,9 @@
 context("combining gva")
 
+# can I just source control-script here and then check the class of each object?
+# will fail if I make weird changes to control-script... and save changes
+# whilst it is good to have control-script clean, the version on github always will be, but I want flexibility when developing. and we won't want to produce output...
+# maybe a 4th run type called unit_testing
 combined_gva <- combine_gva_extracts(
   abs = ee_gva::abs,
   gva = ee_gva::gva,
