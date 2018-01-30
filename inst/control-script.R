@@ -36,7 +36,7 @@ update.packages()
 
 if (production) {
   #install_github()
-  library(ee_gva)
+  library(eegva)
 } else {
 
   # need %>% loaded during devlopment
@@ -150,7 +150,8 @@ gva_by_sector <- sum_gva_by_sector(
 # )
 # names(sector_lookup) <- c("working_name", "output_name", "row_postition")
 # write.csv(sector_lookup, "data/sector_lookup.csv")
-sector_lookup <- read.csv("data/sector_lookup.csv", stringsAsFactors = FALSE)
+sector_lookup <- 
+  read.csv(system.file("data", "sector_lookup.csv", package = "eegva"))
 
 subsector_lookup_digital <- read.csv("data/digital_subsector_lookup.csv", stringsAsFactors = FALSE)
 subsector_lookup_creative <- read.csv("data/creative_subsector_lookup.csv", stringsAsFactors = FALSE)
