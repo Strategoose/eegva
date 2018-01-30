@@ -13,7 +13,7 @@ devtools::install_github("dcmsstats/eegva")
 
 signal whether the run is "development", "production", or "test".
 ```r
-production <- "production"
+run <- "production"
 ```
 
 specify the publication year
@@ -50,17 +50,17 @@ The second, which [Producing output] uses, is to install the package in a simila
 
 #### Producing Output
 The below roughly outlines the steps the package takes to [produce output]. This is what control-script.R does, see [control-script] or open on your laptop using `system.file()` for more detail. Each step uses functions which are founder in /R in the source code.
-1. Uses openxlsx to read in raw data from excel file. The functions that do this are prefixed with `extract_`. Dummy data is included in the package which can be used in place of this extracted data, when the raw data is not available.  
-1. `combine_gva_extracts()` combines the extracted data.  
+1. Uses openxlsx to read in raw data from excel file. The functions that do this are prefixed with `extract_`. Dummy data is included in the package which can be used in place of this extracted data, when the raw data is not available.
+1. `combine_gva_extracts()` combines the extracted data.
 1. `sum_gva_by_sector()` and `sum_gva_by_subsector()` aggreates the data by sector and subsector respectively.
 1. `sector_table()` produces 2 way summary tables ready for the publication.
 1. To produce excel file outputs, excel files in /inst which contain a template are read in using openxlsx, then the summary tables are inserted, again using openxlsx, and then saved to the users home idrectory ~/ which is usually your Documents folder on Windows.
-1. 
+1. Produce charts, and PDF using Rmd - work in progress
 
 #### Further work
-1. Complete summary table functionality for subsectors.  
-1. Produce PDF using Rmd to avoid copy and pasting values, and provide an audit trail.  
-1. Produce charts using R to save time creating them manually, and in order to use Rmd above.  
+1. Complete summary table functionality for subsectors.
+1. Produce PDF using Rmd to avoid copy and pasting values, and provide an audit trail.
+1. Produce charts using R to save time creating them manually, and in order to use Rmd above.
 
 ### Source Code
 
@@ -73,9 +73,9 @@ This is where the package documentation that can usually be found running `?func
 
 #### inst/
 This is where all other files live, for example:  
-1. Excel files which are used as templates that are then populated with output data tables.  
-1. Csv files which are lookup tables used by the package.  
-1. The control script (control-script.R)  
+1. Excel files which are used as templates that are then populated with output data tables.
+1. Csv files which are lookup tables used by the package.
+1. The control script (control-script.R)
 
 #### test/
 The code here simply tests the package is working as expected, using the dummy data. None of this code does any of the analysis the package was designed for.

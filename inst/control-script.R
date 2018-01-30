@@ -2,7 +2,7 @@
 
 
 # notes / to do ================================================================
-# does system.file() work for excel templates when package uninstalled - test changing template
+# does system.file() work for excel templates when package uninstalled - test changing template - yes, system.file() seems to take account of whether devtools::load_all() or library has been used
 # cant use GCP for testing in fresh environment as I dont think will be able to save and access excel output? could test everything else though.
 # and CI
 # and tests
@@ -111,7 +111,7 @@ temp_sectors <-
   c("creative", "culture", "digital", "gambling", "sport", "telecoms")
 for (sector in temp_sectors) {
   assign(
-    paste0("gva_by_", sector, "_subsector"),
+    paste0("gva_by_subsector_", sector),
     sum_gva_by_subsector(
       combined_gva = combined_gva,
       gva = gva,
