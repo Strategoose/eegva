@@ -1,4 +1,24 @@
-# install devtools for development
+# This script uses the package functions to run through the necessary steps to produce the outputs for the statistical publication
+
+
+# notes / to do ================================================================
+# does system.file() work for excel templates when package uninstalled - test changing template
+# cant use GCP for testing in fresh environment as I dont think will be able to save and access excel output? could test everything else though.
+# and CI
+# and tests
+
+
+# useful code for development ==================================================
+
+# devtools::install_github("dcmsstats/eegva")
+# remove.packages("eegva") then restart studio, test with eegva::gva and library(eegva)
+# run <- "development"
+# publication_year <- 2016
+
+
+# Making note of package dependencies ==========================================
+
+# install tools for development
 # install.packages("devtools")
 # install.packages("roxygen2")
 # install.packages("testthat")
@@ -16,37 +36,25 @@
 # devtools::use_package("tidyr")
 # devtools::use_package("magrittr")
 
-# THERE IS SENSITIVE DATA IN INST
-#
-# scrap the subsector for now
-# just get it up on github with instructions for penny to check
-#
-# tell penny I wasted a bunch of time rounding the numbers because I forgot
-# that it was actually only excel rounding the numbers.
-#
-#
-# set up for development or production =========================================
+# there are a number of packages like rcpp which cannot be updated on my laptop - probably security restrictions so need to use need to use a private repo.
+# update.packages()
 
-# devtools::install_github("dcmsstats/eegva")
 
-production <- FALSE
+# set up =======================================================================
 
-# this updates the package used in both the package and the control script
-# there are a number of packages like rcpp which cannot be updated - probably
-# need to use a private repo.
-update.packages()
-
-if (production) {
-  #install_github()
-  library(eegva)
-} else {
-
-  # need %>% loaded during devlopment
-  library(magrittr)
-
-  # load my R scripts
-  devtools::load_all()
+# run can either be "development", "production", or "test"
+if (!run %in% c("development", "production", "test")) {
+  stop("check run has been set correctly")
 }
+
+# specify path to raw data excel file
+if (publication_year == 2016) {
+  path <- "G:/Economic Estimates/2017 publications/November publication/GVA - current/Working_file_dcms_V11 2016 Data.xlsx"
+}
+
+if (run == "production" | run == "test") library(eegva)
+if (run == "development") devtools::load_all()
+
 
 # extract excel data ===========================================================
 
@@ -54,40 +62,22 @@ if (production) {
 # sic_mappings <- read.csv("inst/sic_mappings.csv")
 # save(sic_mappings, file = "data/sic_mappings.rda")
 
-# if below gives errors saying file doesn't exist try closing and starting again
-# it seems like it could be the network causing problems occasionally.
-path <- "G:/Economic Estimates/2017 publications/November publication/GVA - current/Working_file_dcms_V11 2016 Data.xlsx"
-sic91 = extract_sic91(path)
-abs = extract_abs(path)
-gva = extract_gva(path)
-tourism = extract_tourism(path)
-charities = extract_charities(path)
 
-
-# update dummy data ============================================================
-
-#need to update this to return dataframe
-randomise_data <- function (df) {
-  df_colnames <- names(df)[! names(df) %in% c("year", "sic")]
-  df[, df_colnames] <-
-    lapply(
-      df_colnames,
-      function(x) floor(runif(nrow(df),0,1000)) + 0.12345)
-  return(df)
+# NOTE: THESE READ.XLSX OFTEN ERRORS SAYING THE FILE DOES NOT EXIST. NAVIGATING
+# TO THE FILE IN WINDOWS EXPLORER USUALLY FIXES THIS.
+if (run == "development" | run == "production") {
+  abs = extract_abs(path)
+  charities = extract_charities(path)
+  gva = extract_gva(path)
+  sic91 = extract_sic91(path)
+  tourism = extract_tourism(path)
 }
-
-df_list <- c("abs", "charities", "gva", "sic91", "tourism")
-
-for (df in df_list){
-  dummy_path <- file.path("data", paste0(df,".rda"))
-  assign(df, randomise_data(get(df)))
-  save(list = df, file = dummy_path)
-}
-rm(list = ls())
-df_list <- c("abs", "charities", "gva", "sic91", "tourism")
-for (df in df_list){
-  dummy_path <- file.path("data", paste0(df,".rda"))
-  load(dummy_path)
+if (run == "test") {
+  abs = eegva::abs
+  charities = eegva::charities
+  gva = eegva::gva
+  sic91 = eegva::sic91
+  tourism = eegva::tourism
 }
 
 
@@ -99,25 +89,8 @@ combined_gva <- combine_gva_extracts(
   sic91 = sic91
 )
 
-# overlap <- overlap_table(combined_GVA)
-# write.csv(overlap, "G:/Economic Estimates/Rmarkdown/overlap.csv")
 
-
-# group and summarise data =====================================================
-
-# gva by subsector:
-# summarises by year and subsector
-# adds sector and uk totals by year
-for (sector in c("creative", "culture", "digital", "gambling", "sport", "telecoms")) {
-  assign(
-    paste0("gva_by_", sector, "_subsector"),
-    sum_gva_by_subsector(
-      combined_gva = combined_gva,
-      gva = gva,
-      subsector = sector
-    )
-  )
-}
+# aggregate data ===============================================================
 
 # gva by sector:
 # summarises by year and sector
@@ -131,52 +104,42 @@ gva_by_sector <- sum_gva_by_sector(
   charities = charities
 )
 
-# create summary tables --------------------------------------------------------
+# gva by subsector:
+# summarises by year and subsector
+# adds sector and uk totals by year
+temp_sectors <-
+  c("creative", "culture", "digital", "gambling", "sport", "telecoms")
+for (sector in temp_sectors) {
+  assign(
+    paste0("gva_by_", sector, "_subsector"),
+    sum_gva_by_subsector(
+      combined_gva = combined_gva,
+      gva = gva,
+      subsector = sector
+    )
+  )
+}
 
-# Sector title mapping
-# sector_lookup = rbind(
-#   data.frame(),
-#   list("charities", "Civil Society (Non-market charities)", 1),
-#   list("creative", "Creative Industries", 2),
-#   list("culture", "Cultural Sector", 3),
-#   list("digital", "Digital Sector", 4),
-#   list("gambling", "Gambling", 5),
-#   list("sport", "Sport", 6),
-#   list("telecoms", "Telecoms", 7),
-#   list("tourism", "Tourism", 8),
-#   list("all_dcms", "All DCMS sectors", 9),
-#   list("uk_pc", "% of UK GVA", 10),
-#   list("UK", "UK", 11),
-#
-#   stringsAsFactors = FALSE
-# )
-# names(sector_lookup) <- c("working_name", "output_name", "row_postition")
-# write.csv(sector_lookup, "data/sector_lookup.csv")
-sector_lookup <- 
-  read.csv(system.file("extdata", "sector_lookup.csv", package = "eegva"))
 
-subsector_lookup_digital <- read.csv("data/digital_subsector_lookup.csv", stringsAsFactors = FALSE)
-subsector_lookup_creative <- read.csv("data/creative_subsector_lookup.csv", stringsAsFactors = FALSE)
-subsector_lookup_culture <- read.csv("data/culture_subsector_lookup.csv", stringsAsFactors = FALSE)
+# create summary tables ========================================================
 
-# Digital subsector title mapping
-digital_subsector_lookup = rbind(
-  data.frame(),
-  list("charities", "Civil Society (Non-market charities)", 1),
-  list("creative", "Creative Industries", 2),
-  list("culture", "Cultural Sector", 3),
-  list("digital", "Digital Sector", 4),
-  list("gambling", "Gambling", 5),
-  list("sport", "Sport", 6),
-  list("telecoms", "Telecoms", 7),
-  list("tourism", "Tourism", 8),
-  list("all_dcms", "All DCMS sectors", 9),
-  list("uk_pc", "% of UK GVA", 10),
-  list("UK", "UK", 11),
+# Sector title lookups
+sector_lookup <-
+  read.csv(
+    system.file(
+      "extdata", "sector_lookup.csv", package = "eegva"),
+    stringsAsFactors = FALSE)
 
-  stringsAsFactors = FALSE
-)
-names(sector_lookup) <- c("working_name", "output_name", "row_postition")
+for (sector in c("creative", "culture", "digital")) {
+  assign(
+    paste0("subsector_lookup_", sector),
+    read.csv(
+      system.file(
+        "extdata", paste0("subsector_lookup_", sector, ".csv"), package = "eegva"),
+      stringsAsFactors = FALSE)
+  )
+}
+
 
 # sector tables
 sector_table <- sector_table(gva_by_sector)
@@ -190,27 +153,25 @@ sector_table_indexed <- sector_table(gva_by_sector, indexed = TRUE)
 # )
 
 
+# excel output =================================================================
 
-
-# excel output -----------------------------------------------------------------
-
-excel_filename <- 
+excel_filename <-
   system.file(
     "DCMS_Sectors_Economic_Estimates_Template.xlsx", package = "eegva")
 
 wb <- openxlsx::loadWorkbook(file = excel_filename)
 
-# 3.1 - GVA (£m)
+# update sheet "3.1 - GVA (£m)"
 openxlsx::writeData(wb, 2, x = sector_table, startCol = 1, startRow = 6)
 
-# 3.1a - GVA (2010=100)
+# update sheet "3.1a - GVA (2010=100)"
 openxlsx::writeData(wb, 3, x = sector_table_indexed, startCol = 1, startRow = 6)
 
 openxlsx::saveWorkbook(
   wb, file.path("~", "DCMS_Sectors_Economic_Estimates.xlsx"), overwrite = TRUE)
 
 
-# create charts - work in progress
+# create charts - work in progress =============================================
 
 # # produce figure 3.1
 # fig31 <- figure3.1(GVA_by_sector2) +
