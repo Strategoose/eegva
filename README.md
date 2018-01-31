@@ -85,6 +85,7 @@ add dummy and unit_test
 Specify the publication year (data year not release year). (This is used to choose which file path is used in a production run).
 ```r
 publication_year <- 2016
+```
 
 The below roughly outlines the steps the package takes to [produce output]. This is what control-script.R does, see [control-script] or open on your laptop using `system.file()` for more detail. Each step uses functions which are founder in /R in the source code.
 
