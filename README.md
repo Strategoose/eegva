@@ -20,7 +20,7 @@ run <- "production"
 
 If you don't have access to the raw data and would like to test the package using dummy data:
 ```r
-run <- "dummy"
+run <- "test"
 ```
 
 Specify the publication year (data year not release year). (This is used to choose which file path is used in a production run).
@@ -60,15 +60,17 @@ The second, which [Producing output] uses, is to install the package in a simila
 #### Producing Output
 source-script.R calls each of the functions necessary to produce publication output. A number of global variables must be set to specify how this runs.
 
-After using `devtools::install_github("dcmsstats/eegva")` If you have access to the raw data:
+After using `devtools::install_github("dcmsstats/eegva")`, If you have access to the raw data:
 ```r
 run <- "production"
 ```
 
 If you don't have access to the raw data and would like to test the package using dummy data:
 ```r
-run <- "dummy"
+run <- "test"
 ```
+
+add dummy and unit_test
 
 Specify the publication year (data year not release year). (This is used to choose which file path is used in a production run).
 ```r

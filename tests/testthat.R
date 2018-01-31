@@ -1,4 +1,4 @@
 library(testthat)
-library(ee_gva)
+library(eegva)
 
-test_check("ee_gva")
+test_check("eegva")

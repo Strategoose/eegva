@@ -37,6 +37,7 @@
 # devtools::use_package("dplyr")
 # devtools::use_package("tidyr")
 # devtools::use_package("magrittr")
+# devtools::use_package("testthat", "Suggests")
 
 # there are a number of packages like rcpp which cannot be updated on my laptop - probably security restrictions so need to use need to use a private repo.
 # update.packages()
@@ -125,13 +126,15 @@ for (sector in temp_sectors) {
 
 # create summary tables ========================================================
 
-# Sector title lookups
-sector_lookup <-
-  read.csv(
-    system.file(
-      "extdata", "sector_lookup.csv", package = "eegva"),
-    stringsAsFactors = FALSE)
+# sector title lookup
+# sector_lookup <-
+#   read.csv(
+#     system.file(
+#       "extdata", "sector_lookup.csv", package = "eegva"),
+#     stringsAsFactors = FALSE)
+# devtools::use_data(sector_lookup)
 
+# subsector title lookups
 for (sector in c("creative", "culture", "digital")) {
   assign(
     paste0("subsector_lookup_", sector),

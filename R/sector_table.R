@@ -52,6 +52,7 @@ sector_table <- function(gva_by_sector,
   # append dcms % uk row
 
   # update sector column with pretty category names
+  sector_lookup <- eegva::sector_lookup
   df$Sector <-
     sector_lookup$output_name[match(df$Sector, sector_lookup$working_name)]
 
