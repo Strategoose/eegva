@@ -35,6 +35,9 @@ publication_year <- 2016
 
 Run script which uses package to create stats publication. [control-script.R] goes through the necessary steps to produce the output.
 source(systemfile(control-script, eegva))
+```r
+source(system.file("control-script.R", package = "eegva"))
+```
 
 ## Trouble shooting
 
