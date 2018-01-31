@@ -1,6 +1,6 @@
 [![Travis-CI Build Status](https://travis-ci.org/DCMSstats/eegva.svg?branch=master)](https://travis-ci.org/DCMSstats/eegva)
-
-# R package to automate the production of DCMS statistical publications: <img src="man/figures/rap_hex.png" align="right" />
+<img src="man/figures/rap_hex.png" align="right" width="150" height="150"/>
+# R package to automate the production of DCMS statistical publications: 
 ### DCMS Sector Ecomonic Estimates: GVA
 https://www.gov.uk/government/collections/dcms-sectors-economic-estimates
   
