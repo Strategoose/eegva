@@ -8,6 +8,8 @@ https://www.gov.uk/government/collections/dcms-sectors-economic-estimates
 ## Producing output 
 Below is a quick guide to producing output with the package.
 
+Copy and paste the following code blocks in to the console of Rstudio and press enter.
+
 [devtools](https://www.rstudio.com/products/rpackages/devtools/) is required to install packages from github
 ```r
 install.packages("devtools")
@@ -34,8 +36,7 @@ Specify the publication year (data year not release year). (This is used to choo
 publication_year <- 2016
 ```
 
-Run script which uses package to create stats publication. [control-script.R] goes through the necessary steps to produce the output.
-source(systemfile(control-script, eegva))
+Run script which uses package to create stats publication. Control-script.R goes through the necessary steps to produce the output.
 ```r
 source(system.file("control-script.R", package = "eegva"))
 ```
