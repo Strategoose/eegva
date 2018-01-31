@@ -1,3 +1,4 @@
+[![Travis-CI Build Status](https://travis-ci.org/DCMSstats/eegva.svg?branch=master)](https://travis-ci.org/DCMSstats/eegva)
 
 ## Producing output 
 Below is a quick guide to producing output with the package.
