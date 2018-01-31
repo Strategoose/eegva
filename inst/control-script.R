@@ -4,6 +4,8 @@
 # notes / to do ================================================================
 # does system.file() work for excel templates when package uninstalled - test changing template - yes, system.file() seems to take account of whether devtools::load_all() or library has been used
 # cant use GCP for testing in fresh environment as I dont think will be able to save and access excel output? could test everything else though.
+# add tests to validate dummy data, so it is same as extracts
+# build in more stuff to hadle the years
 # and CI
 # and tests
 
