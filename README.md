@@ -1,4 +1,5 @@
 [![Travis-CI Build Status](https://travis-ci.org/DCMSstats/eegva.svg?branch=master)](https://travis-ci.org/DCMSstats/eegva)
+[![Coverage Status](https://img.shields.io/codecov/c/github/DCMSstats/eegva/master.svg)](https://codecov.io/github/DCMSstats/eegva?branch=master)
 <img src="man/figures/rap_hex.png" align="right" width="150" height="150"/>
 # R package to automate the production of DCMS statistical publications: 
 ### DCMS Sector Ecomonic Estimates: GVA

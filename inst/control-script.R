@@ -40,6 +40,9 @@
 # devtools::use_package("testthat", "Suggests")
 
 # devtools::use_travis()
+devtools::use_appveyor()
+devtools::use_coverage()
+devtools::use_mit_license()
 
 # there are a number of packages like rcpp which cannot be updated on my laptop - probably security restrictions so need to use need to use a private repo.
 # update.packages()
