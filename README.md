@@ -43,6 +43,8 @@ Run script which uses package to create stats publication. Control-script.R goes
 source(system.file("control-script.R", package = "eegva"))
 ```
 
+If successful, the package will save outputs to your R home directoy, which is printed to the console. 
+
 ## Trouble shooting
 
 if run the above fails and generates the below error, try navigating to the file in windows explorer then rerun the code
