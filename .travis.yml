@@ -4,6 +4,8 @@ language: R
 warnings_are_errors: false
 sudo: false
 cache: packages
+notifications:
+  email: false
 
 after_success:
   - Rscript -e 'covr::codecov()'
