@@ -1,7 +1,7 @@
 [![Travis-CI Build Status](https://travis-ci.org/DCMSstats/eegva.svg?branch=master)](https://travis-ci.org/DCMSstats/eegva)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/DCMSstats/eegva?branch=master&svg=true)](https://ci.appveyor.com/project/DCMSstats/eegva)
 [![Coverage Status](https://img.shields.io/codecov/c/github/DCMSstats/eegva/master.svg)](https://codecov.io/github/DCMSstats/eegva?branch=master)
-[![GitHub release](https://img.shields.io/github/release/DCMSstats/eeegva.svg)](https://github.com/DCMSstats/eeegva/releases)
+[![GitHub release](https://img.shields.io/github/release/DCMSstats/eegva.svg)](https://github.com/DCMSstats/eeegva/releases)
 <img src="man/figures/rap_hex.png" align="right" width="150" height="150"/>
 # R package to automate the production of DCMS statistical publications: 
 ### DCMS Sector Ecomonic Estimates: GVA
