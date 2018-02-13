@@ -3,7 +3,7 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/DCMSstats/eegva/master.svg)](https://codecov.io/github/DCMSstats/eegva?branch=master)
 [![GitHub release](https://img.shields.io/github/release/DCMSstats/eegva.svg)](https://github.com/DCMSstats/eeegva/releases)
 <img src="man/figures/rap_hex.png" align="right" width="150" height="150"/>
-# Reproducible Analytical Pipeline for the production of DCMS statistical publications: 
+# Reproducible Analytical Pipeline
 ### DCMS Sector Ecomonic Estimates: GVA
 https://www.gov.uk/government/collections/dcms-sectors-economic-estimates
   
