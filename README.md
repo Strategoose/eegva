@@ -53,7 +53,7 @@ Error in read.xlsx.default(xlsxFile = path, sheet = sheet, colNames = FALSE) :
   File does not exist.
 ```
 
-for other errors, run `update.packages()` and perform these steps then try again
+For other errors, run `update.packages()` and then try again.
 
 ## How the package works
 This sections provides more detailed information on the package.
