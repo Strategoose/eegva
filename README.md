@@ -8,7 +8,7 @@
 https://www.gov.uk/government/collections/dcms-sectors-economic-estimates
   
   
-## Producing output 
+## Quick Start
 Below is a quick guide to producing output with the package.
 
 Copy and paste the following code blocks in to the console of Rstudio and press enter.
@@ -48,14 +48,13 @@ If successful, the package will save outputs to your R home directoy, which is p
 
 ## Trouble shooting
 
-if run the above fails and generates the below error, try navigating to the file in windows explorer then rerun the code
+If above fails and generates the below error, try navigating to the file in windows explorer then rerun the code
 ```
 Error in read.xlsx.default(xlsxFile = path, sheet = sheet, colNames = FALSE) : 
   File does not exist.
 ```
 
-for other errors, perform these steps then try again
-run `update.packages()`
+for other errors, run `update.packages()` and perform these steps then try again
 
 ## How the package works
 This sections provides more detailed information on the package.
