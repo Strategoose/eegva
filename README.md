@@ -64,8 +64,14 @@ There are two options for using the package.
 #### Cloning
 Cloning the package source code from the github repository will give you access to all the code for the package and therefore the ability to update the package (to save your updates to github, you need the appropriate permissions). [These] instructions provide some guidance on this process. You can also make changes directly in github, but this is only suitable for making very small changes.
 
+To use the package to produce a new publication you will need to:
+1. add the path to the new raw data to control-script.R.
+1. update the sector_table() function to use the correct year (it currently has 2016 hard coded).
+1. update the template, for example adding in extra columns for the most recent years data.
+
 #### Installing
 The second, which [Producing output] uses, is to install the package in a similar way that you would usually install packages (e.g. using install.packages("dplyr")). This means you can use the functions in the package which are necessary to produce the outputs, but are not able to access all of the code, or update it.
+
 
 
 ### How the package functions
