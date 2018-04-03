@@ -57,7 +57,11 @@ if (!run %in% c("development", "production", "test")) {
 
 # specify path to raw data excel file
 if (publication_year == 2016) {
-  path <- "G:/Economic Estimates/2017 publications/November publication/GVA - current/Working_file_dcms_V11 2016 Data.xlsx"
+  if (.Platform$OS.type == 'unix') {
+    path <- "/Volumes/Data/EAU/Statistics/Economic Estimates/2017 publications/November publication/GVA - current/Working_file_dcms_V11 2016 Data.xlsx"
+  } else {
+    path <- "G:/Economic Estimates/2017 publications/November publication/GVA - current/Working_file_dcms_V11 2016 Data.xlsx"
+  }
 }
 
 if (run == "production" | run == "test") library(eegva)
