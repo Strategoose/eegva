@@ -63,6 +63,14 @@ if (publication_year == 2016) {
     path <- "G:/Economic Estimates/2017 publications/November publication/GVA - current/Working_file_dcms_V11 2016 Data.xlsx"
   }
 }
+if (publication_year == 2018) {
+ # if (.Platform$OS.type == 'unix') {
+  #  path <- "/Volumes/Data/EAU/Statistics/Economic Estimates/2017 publications/November publication/GVA - current/Working_file_dcms_V11 2016 Data.xlsx"
+  #} else {
+    path <- "G:/Economic Estimates/2019 publications/GVA/TestDevelopment/DP_Working_file_dcms_V11 2018 Data Test.xlsx"
+ # }
+}
+
 
 if (run == "production" | run == "test") library(eegva)
 if (run == "development") devtools::load_all()
